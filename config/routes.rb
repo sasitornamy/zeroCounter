@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'pages/introduction'
+  post 'pages/submit_introduction_form'
+  post 'pages/instructions'
+
+  root 'pages#introduction'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
