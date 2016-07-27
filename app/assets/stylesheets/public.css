@@ -3,4 +3,6 @@ h1 {
 }
 .flash-error {
   color: red;
+  background-color: #ffecec;
+  padding: 5px 0;
 }

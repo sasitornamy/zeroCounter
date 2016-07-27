@@ -1,8 +1,8 @@
-class PagesController < ApplicationController
+class ExperimentSessionsController < ApplicationController
   def introduction
   end
 
-  def submit_introduction_form
+  def create
     if params[:consent] == '1'
       render :instructions
     else

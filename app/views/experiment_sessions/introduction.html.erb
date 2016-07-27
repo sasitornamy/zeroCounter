@@ -8,8 +8,13 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </p>
 
-<%= form_tag("/pages/submit_introduction_form", method: "post") do %>
+<%= form_tag("/experiment_sessions/create", method: "post") do %>
   <%= check_box_tag(:consent) %>
-  <%= label_tag(:consent, "Click to consent") %><br><br>
+  <%= label_tag(:consent, "Click to consent") %><br>
+  <% flash.each do |key, value| %>
+    <div class="flash-<%= key %>"><%= value %></div>
+  <% end %>
   <%= submit_tag("Proceed") %>
 <% end %>
+
+

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-feature 'Introduction page' do
+feature 'begin experiment session' do
   background do
-    visit '/pages/introduction'
+    visit '/experiment_sessions/introduction'
   end
   context 'user clicks Proceed button' do
     context 'user does not agree to the consent form' do
