@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Complete the Task</h1>
+  <div class="question">
+    <p>Count the number of zeros</p>
+    <%= image_tag @stimulus.image_path, size: '250' %>
+    <%= form_for @trial,  url: {action: 'create'} do |f| %>
+      <%= f.label :response, 'Number of zeros:' %>
+      <%= f.text_field :response %>
+      <%= f.hidden_field :stim_id %>
+      <%= f.button 'Submit', type: 'submit'%>
+    <% end %>
+    <% flash.each do |key, value| %>
+      <div class="flash-<%= key %>"><%= value %></div>
+    <% end %>
+  </div>
+
+  <% unless @trial.response_result.nil? %>
+    <div class="answer">
+      <% if @trial.response_result %>
+        <p>CORRECT!</p>
+      <% else %>
+        <p>INCORRECT</p>
+        <p>You entered: <%= @trial.response %></p>
+        <p>Correct response: <%= @stimulus.num_zeros %></p>
+      <% end %>
+      <%= link_to 'Next', new_trial_path, class: 'button' %>
+    </div>
+  <% end %>
+
+</div>
+
+
+

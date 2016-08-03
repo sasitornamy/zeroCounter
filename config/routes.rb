@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get 'experiment_sessions/introduction'
-  post 'experiment_sessions/create'
-  post 'experiment_sessions/instructions'
+
+  resources :trials
+
+  post 'experiment_sessions', to: 'experiment_sessions#create'
 
   root 'experiment_sessions#introduction'
 

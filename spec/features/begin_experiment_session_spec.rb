@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'begin experiment session' do
   background do
-    visit '/experiment_sessions/introduction'
+    visit root_path
   end
   context 'user clicks Proceed button' do
     context 'user does not agree to the consent form' do
@@ -15,7 +15,7 @@ feature 'begin experiment session' do
       before do
         page.check('consent')
       end
-      scenario 'goes to the instruction page' do
+      scenario 'begins the trial' do
         click_button 'Proceed'
         expect(page).to have_content 'Instructions'
       end
