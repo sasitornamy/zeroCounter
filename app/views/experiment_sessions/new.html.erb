@@ -14,7 +14,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
   <% flash.each do |key, value| %>
     <div class="flash-<%= key %>"><%= value %></div>
   <% end %>
-  <%= f.submit, "Proceed" %>
+  <%= f.button 'Proceed', type: 'submit'%>
 <% end %>
 
 

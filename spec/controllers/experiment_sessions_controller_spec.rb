@@ -1,18 +1,29 @@
 require 'rails_helper'
 
-describe ExperimentSessionsController, type: :request do
+describe ExperimentSessionsController, type: :controller do
 
-  describe "GET #introduction" do
-    it "returns http success" do
-      get '/experiment_sessions/introduction'
-      expect(response).to have_http_status(:success)
+  describe '#create' do
+    context 'valid params' do
+      it 'creates an experiment session' do
+        expect{post :create,
+        {
+          experiment_session: {
+            consent_given: 1
+          }
+        }}.to change(ExperimentSession, :count).by(1)
+        expect(response.status).to eq(200)
+      end
     end
-  end
-
-  describe "POST #instructions" do
-    it "returns http success" do
-      post '/experiment_sessions/instructions'
-      expect(response).to have_http_status(:success)
+    context 'invalid params' do
+      it 'does not create an experiment session' do
+        expect{post :create,
+        {
+          experiment_session: {
+            consent_given: 0
+          }
+        }}.to_not change(ExperimentSession, :count)
+        expect(response.status).to eq(200)
+      end
     end
   end
 
