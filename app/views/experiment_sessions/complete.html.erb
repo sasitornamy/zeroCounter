@@ -1,0 +1,15 @@
+<h1>Thank you for participating!</h1>
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...
+</p>
+
+<% unless @experiment_session.mechanical_turk_id.present? %>
+  <%= form_for @experiment_session do |f| %>
+    <%= f.label :mechanical_turk_id, 'Mechanical Turk ID:' %>
+    <%= f.text_field :mechanical_turk_id %>
+    <%= f.hidden_field :number_of_trials %>
+    <%= f.button 'Submit', type: 'submit'%>
+  <% end %>
+<% end %>
