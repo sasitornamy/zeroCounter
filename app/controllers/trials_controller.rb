@@ -1,12 +1,15 @@
 class TrialsController < ApplicationController
 
   def new
-    completed_stimulus_ids = []
-    ExperimentSession.find(params[:experiment_session_id]).stimuli.each do |s|
-      completed_stimulus_ids.push(s.id)
+    @stimulus = Stimulus.next_remaining(
+      params[:experiment_session_id],
+      params[:order_appeared]
+    )
+    unless @stimulus.present?
+      @experiment_session = ExperimentSession.find(params[:experiment_session_id])
+      @experiment_session.number_of_trials = params[:order_appeared]
+      return render 'experiment_sessions/complete'
     end
-    @stimulus = Stimulus.excluded_id(completed_stimulus_ids).random.first
-    return render :complete unless @stimulus
 
     @trial = Trial.new
     @trial.stimulus_id = @stimulus.id
@@ -17,7 +20,10 @@ class TrialsController < ApplicationController
     @trial = TrialBuilder.new(trial_params).build
     @stimulus = Stimulus.find(@trial.stimulus_id)
 
-    flash.now[:error] = @trial.errors.full_messages[0] unless @trial.save
+    unless @trial.save
+      flash.now[:error] = @trial.errors.full_messages[0]
+      @trial.response_result = nil
+    end
     render :new
   end
 
