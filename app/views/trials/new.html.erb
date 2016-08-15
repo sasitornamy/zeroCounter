@@ -10,9 +10,6 @@
       <%= f.hidden_field :experiment_session_id %>
       <%= f.button 'Submit', type: 'submit'%>
     <% end %>
-    <% flash.each do |key, value| %>
-      <div class="flash-<%= key %>"><%= value %></div>
-    <% end %>
   </div>
 
   <% unless @trial.response_result.nil? %>
@@ -25,11 +22,11 @@
         <p>Correct response: <%= @stimulus.number_of_zeros %></p>
       <% end %>
       <%= link_to 'Next', new_trial_path(
-        experiment_session_id: @trial.experiment_session_id
+        experiment_session_id: @trial.experiment_session_id,
+        order_appeared: @trial.order_appeared
       ), class: 'button' %>
     </div>
   <% end %>
-
 </div>
 
 

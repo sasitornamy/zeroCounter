@@ -6,6 +6,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'figaro'
 gem 'pg'
 
 group :development, :test do
