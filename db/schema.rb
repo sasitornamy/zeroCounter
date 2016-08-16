@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728113939) do
+ActiveRecord::Schema.define(version: 20160816161035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +34,21 @@ ActiveRecord::Schema.define(version: 20160728113939) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "trial_interactions", force: :cascade do |t|
+    t.integer  "trial_id"
+    t.integer  "response_time"
+    t.integer  "time_since_answer_revealed_to_next_question"
+    t.text     "keystrokes"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
   create_table "trials", force: :cascade do |t|
     t.integer  "experiment_session_id"
     t.integer  "stimulus_id"
     t.integer  "order_appeared"
     t.integer  "response"
     t.boolean  "response_result"
-    t.integer  "response_time"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
