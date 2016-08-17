@@ -8,6 +8,8 @@
       <%= f.text_field :response %>
       <%= f.hidden_field :stimulus_id %>
       <%= f.hidden_field :experiment_session_id %>
+      <%= hidden_field_tag :trial_start_time, @trial_start_time %>
+      <%= hidden_field_tag :keystrokes, @keystrokes %>
       <%= f.button 'Submit', type: 'submit'%>
     <% end %>
   </div>
@@ -23,7 +25,9 @@
       <% end %>
       <%= link_to 'Next', new_trial_path(
         experiment_session_id: @trial.experiment_session_id,
-        order_appeared: @trial.order_appeared
+        order_appeared: @trial.order_appeared,
+        previous_trial_id: @trial.id,
+        answer_revealed_time: @answer_revealed_time
       ), class: 'button' %>
     </div>
   <% end %>
