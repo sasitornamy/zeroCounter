@@ -16,6 +16,10 @@ feature 'submit answer' do
     scenario 'displays correct message' do
       expect(page).to have_content 'CORRECT'
     end
+    scenario 'does not allow to re-submit the answer' do
+      expect(page).not_to have_field('trial_response')
+      expect(page).not_to have_button('Submit')
+    end
   end
   context 'incorrect answer' do
     background do

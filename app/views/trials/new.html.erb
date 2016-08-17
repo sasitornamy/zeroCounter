@@ -3,14 +3,16 @@
   <div class="question">
     <p>Count the number of zeros</p>
     <%= image_tag @stimulus.image_path, size: '250' %>
-    <%= form_for @trial,  url: {action: 'create'} do |f| %>
-      <%= f.label :response, 'Number of zeros:' %>
-      <%= f.text_field :response %>
-      <%= f.hidden_field :stimulus_id %>
-      <%= f.hidden_field :experiment_session_id %>
-      <%= hidden_field_tag :trial_start_time, @trial_start_time %>
-      <%= hidden_field_tag :keystrokes, @keystrokes %>
-      <%= f.button 'Submit', type: 'submit'%>
+    <% if @trial.response_result.nil? %>
+      <%= form_for @trial,  url: {action: 'create'} do |f| %>
+        <%= f.label :response, 'Number of zeros:' %>
+        <%= f.text_field :response %>
+        <%= f.hidden_field :stimulus_id %>
+        <%= f.hidden_field :experiment_session_id %>
+        <%= hidden_field_tag :trial_start_time, @trial_start_time %>
+        <%= hidden_field_tag :keystrokes, @keystrokes %>
+        <%= f.button 'Submit', type: 'submit'%>
+      <% end %>
     <% end %>
   </div>
 
