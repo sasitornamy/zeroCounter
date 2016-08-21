@@ -7,6 +7,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'figaro'
 gem 'pg'
+gem 'axlsx_rails'
 
 group :development, :test do
   gem 'byebug'

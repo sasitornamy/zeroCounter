@@ -1,0 +1,9 @@
+<h1>Admin</h1>
+<h3>Download data below</h3>
+<%= form_tag( admin_export_file_path(format: :xlsx), method: 'get' ) do %>
+  <%= label_tag :start_date, 'Start Date:' %>
+  <%= date_field_tag :start_date %>
+  <%= label_tag :end_date, 'End Date:' %>
+  <%= date_field_tag :end_date, Date.today %>
+  <%= submit_tag 'Submit' %>
+<% end %>

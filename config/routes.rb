@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :experiment_sessions
 
+  get 'admin', to: 'admins#query_data'
+  get 'admin/export_file', to: 'admins#export_file'
+
   root 'experiment_sessions#new'
 
   # The priority is based upon order of creation: first created -> highest priority.

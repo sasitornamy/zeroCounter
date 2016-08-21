@@ -1,0 +1,25 @@
+wb = xlsx_package.workbook
+styles = wb.styles
+title = styles.add_style sz: 15, b: true, fg_color: '00'
+header = styles.add_style bg_color: '3071A9', fg_color: 'FF',
+  alignment: { horizontal: :center }
+default = styles.add_style alignment: { horizontal: :center }
+wb.add_worksheet(name: "Experiment Sessions") do |sheet|
+  @experiments.each do |experiment|
+    sheet.add_row ['Mechanical Turk ID', experiment.mechanical_turk_id],
+      style: title
+    sheet.add_row ['Trial Order', 'Stimulus Image Path', 'Number of zeros',
+      'Response', 'Result', 'Response Time (msec)', 'Keystrokes',
+      'Time since answer revealed until next button clicked (msec)'],
+      style: header
+    experiment.trials.each do |trial|
+      sheet.add_row [
+        trial.order_appeared, trial.stimulus.image_path,
+        trial.stimulus.number_of_zeros, trial.response, trial.response_result,
+        trial.trial_interaction.response_time, trial.trial_interaction.keystrokes,
+        trial.trial_interaction.time_since_answer_revealed_to_next_question
+      ], style: default
+    end
+    sheet.add_row ['']
+  end
+end
